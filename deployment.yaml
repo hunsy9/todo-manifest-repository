@@ -16,21 +16,10 @@ spec:
         app: todo-app
     spec:
       containers:
-        - name: frontend
-          image: <ECR_FRONTEND_IMAGE>
+        - name: todo-app
+          image: <ECR_TODO_APP_IMAGE>
           ports:
             - containerPort: 80
-          resources:
-            requests:
-              cpu: 50m
-              memory: 64Mi
-            limits:
-              cpu: 100m
-              memory: 128Mi
-        - name: backend
-          image: <ECR_BACKEND_IMAGE>
-          ports:
-            - containerPort: 8000
           resources:
             requests:
               cpu: 100m
@@ -41,6 +30,6 @@ spec:
           readinessProbe:
             httpGet:
               path: /api/health
-              port: 8000
+              port: 80
             initialDelaySeconds: 5
             periodSeconds: 10
